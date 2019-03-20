@@ -1,0 +1,76 @@
+<!-- directive -->
+<div class="jumbotron">
+  <h1 class="text-center">Welcome to {{attdirective}} !!!</h1>
+  <div class="container">
+    <div>
+      <p mycolor>1.) Text background color directive</p>
+    </div>
+    <div>
+      <p appBgcolor>2.) Text background shadow directive</p>
+    </div>
+    <div>
+      <div customTheme>3.) custom theme directive</div>
+      <p customTheme tcolor="yellow" bcolor="black" tsize="20px"> customTheme Directive </p>
+      <!-- another example  -->
+      <!-- <div [customTheme]="'lightgreen'"
+          [customThemeX]="'5px'"
+          [customThemeY]="'5px'"
+          [customThemeBlur]="'25px'">3.) custom theme directive</div>
+        </div> -->
+    </div>
+    <div>
+      <p mouseAction>4.) mouseAction Directive</p>
+    </div>
+    <div>
+      <select [(ngModel)]="myColor">
+        <option value='' selected> Select Color </option>
+        <option *ngFor="let color of colors" [value]="color">
+          {{color}}
+        </option>
+      </select>
+      <p [dynamicColor]="myColor" defaultValue="red">5.) dynamicColor Directive Demo</p>
+    </div>
+  </div>
+  <hr>
+
+
+  <h1 class="text-center">Welcome to {{strdirective}} !!!</h1>
+  <h5>cpIf Directive</h5>
+  <div>
+    <input type="radio" name="rad1" (click)="showCpIf= true"> True
+    <input type="radio" name="rad1" (click)="showCpIf= false"> False
+  </div>
+  <br>
+  <div *appCpIf="showCpIf">
+    <b>Hello cpIf Directive.</b>
+  </div>
+  <ng-template [appCpIf]="!showCpIf">
+    <div>
+      <b>Message not Available.</b>
+    </div>
+  </ng-template>
+  <br>
+
+  <h5>cpLoop Directive</h5>
+  <ul>
+    <li *appCpLoop="5">
+      Hello World!
+    </li>
+  </ul>
+
+  <h5>cpDelay Directive</h5>
+  <div>
+    Show message after
+    <input type="radio" name="rad2" (click)="showCpDelay= true; delayInSec = 2000"> 2 Seconds
+    <input type="radio" name="rad2" (click)="showCpDelay= true; delayInSec = 5000"> 5 Seconds
+    <input type="radio" name="rad2" (click)="showCpDelay= true; delayInSec = 7000"> 7 Seconds
+  </div>
+  <br />
+  <div *appCpIf="showCpDelay">
+    <div *appCpDelay="delayInSec">
+      <b> Hello cpDelay Directive. </b>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
